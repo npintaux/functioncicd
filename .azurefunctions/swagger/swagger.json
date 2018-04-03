@@ -11,7 +11,7 @@
     "http"
   ],
   "paths": {
-    "/api/HttpTriggerCSharp1": {
+    "/api/CalculateRevenueAndCost": {
       "post": {
         "operationId": "CalculateCosts",
         "description": "Determines if a technician should be sent for repair",
