@@ -1,0 +1,96 @@
+﻿{
+  "swagger": "2.0",
+  "info": {
+    "title": "npturbine.azurewebsites.net",
+    "version": "1.0.0"
+  },
+  "host": "npturbine.azurewebsites.net",
+  "basePath": "/",
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/api/HttpTriggerCSharp1": {
+      "post": {
+        "operationId": "CalculateCosts",
+        "description": "Determines if a technician should be sent for repair",
+        "summary": "Calculates costs",
+        "x-ms-summary": "Calculates costs",
+        "x-ms-visibility": "important",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Hours and capacity used to calculate costs",
+            "x-ms-summary": "Hours and capacity",
+            "x-ms-visibility": "important",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "hours": {
+                  "description": "The amount of effort in hours required to conduct repair",
+                  "type": "number",
+                  "x-ms-summary": "Hours",
+                  "x-ms-visibility": "important"
+                },
+                "capacity": {
+                  "description": "The max output of a turbine in kilowatts",
+                  "type": "number",
+                  "x-ms-summary": "Capacity",
+                  "x-ms-visibility": "important"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Message with cost and revenue numbers",
+            "x-ms-summary": "Message",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "description": "Returns Yes or No depending on calculations",
+                  "x-ms-summary": "Message"
+                },
+                "revenueOpportunity": {
+                  "type": "string",
+                  "description": "The revenue opportunity cost",
+                  "x-ms-summary": "RevenueOpportunity"
+                },
+                "costToFix": {
+                  "type": "string",
+                  "description": "The cost in $ to fix the turbine",
+                  "x-ms-summary": "CostToFix"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apikeyQuery": []
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {},
+  "securityDefinitions": {
+    "apikeyQuery": {
+      "type": "apiKey",
+      "name": "code",
+      "in": "query"
+    }
+  }
+}
